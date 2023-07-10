@@ -1,4 +1,4 @@
-const getAllTemps = require("../controllers/tempControllers");
+const {getAllTemps} = require("../controllers/tempControllers");
 
 const getTempHandler = async (req, res) => {
 try {

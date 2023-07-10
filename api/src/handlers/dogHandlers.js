@@ -70,7 +70,7 @@ const postDogHandler = async (req, res) => {
       life_span_min,
       image
     );
-    res.status(200).json(newDog);
+    res.status(201).json({message: "Dog created successfully"});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

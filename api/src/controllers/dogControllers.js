@@ -21,8 +21,36 @@ const getAllDogs = async () => {
   let dbData = await Dog.findAll({
     include: {
       model: Temperament,
-      atributes: ["name"],
+      through: { attributes: [] },
+      attributes: ["name"],
     },
+  });
+
+  dbData = dbData.map((dog) => {
+    const {
+      id,
+      name,
+      height_max,
+      height_min,
+      weight_max,
+      weight_min,
+      life_span_max,
+      life_span_min,
+      image,
+      Temperaments,
+    } = dog.toJSON();
+    return {
+      id,
+      name,
+      height_max,
+      height_min,
+      weight_max,
+      weight_min,
+      life_span_max,
+      life_span_min,
+      image,
+      temperament: [...Temperaments.map((t) => t.name)], // Crear una nueva propiedad "temperament" y asignarle los temperamentos unidos en una cadena
+    };
   });
 
   const allDogs = [...dogsAPI, ...dbData];
@@ -54,13 +82,7 @@ const createDog = async (
     },
   });
 
-  temperament.forEach(async (element) => {
-    const [dbTemperament, createdTemp] = await Temperament.findOrCreate({
-      where: { name: element },
-      defaults: { name: element },
-    });
-    await newDog.addTemperament(dbTemperament);
-  });
+  await newDog.addTemperament(temperament);
 
   if (created) return newDog;
   throw Error("This dog already exists");

@@ -1,0 +1,6 @@
+.container {
+    display: flex;
+    flex-wrap: row wrap;
+    background-color:bisque;
+    justify-content: space-around;
+}
