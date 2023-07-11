@@ -20,3 +20,15 @@ return async function(dispatch){
     dispatch({type: GET_DOG_BY_ID, payload: dog});
 };
 };
+
+  // const allTemps = async () => {
+    //   let dogsAPI = await axios.get(URL);
+      
+    //   const temps = dogsAPI.data.map((dog) => {
+    //     if (dog.temperament) {
+    //       return dog.temperament.split(", ");
+    //     }
+    //   });
+      
+    //   return temps;
+    // }
