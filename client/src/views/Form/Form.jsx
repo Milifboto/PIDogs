@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import {validation} from "./validation";
-
+import { validation } from "./validation";
 
 const URL = "http://localhost:3001/dogs";
 
@@ -30,7 +29,6 @@ const Form = () => {
     first_temperament: "",
   });
 
-
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
@@ -39,17 +37,26 @@ const Form = () => {
   };
 
   const submitHandler = (event) => {
+    event.preventDefault();
 
-  event.preventDefault();
-
-  if(!form.name || !form.height_max ||  !form.height_min || !form.weight_max || !form.weight_min || !form.life_span_max || !form.life_span_min || !form.first_temperament){
-   return alert("You must complete all fields in order to create your dog")
-  } 
-  axios.post(URL, form)
-  .then(res=> alert(res))
-  .catch(error=>error(error))
-  alert("Dog created succesfully!");
-  }
+    if (
+      !form.name ||
+      !form.height_max ||
+      !form.height_min ||
+      !form.weight_max ||
+      !form.weight_min ||
+      !form.life_span_max ||
+      !form.life_span_min ||
+      !form.first_temperament
+    ) {
+      return alert("You must complete all fields in order to create your dog");
+    }
+    axios
+      .post(URL, form)
+      .then((res) => alert(res))
+      .catch((error) => error(error));
+    alert("Dog created succesfully!");
+  };
 
   return (
     <div>
@@ -63,63 +70,69 @@ const Form = () => {
             onChange={changeHandler}
             value={form.name}
           />
-          {errors.name && <span>{errors.name}</span>} 
+          {errors.name && <span>{errors.name}</span>}
         </div>
         <div>
           <label>Maximum height</label>
           <input
             type="number"
             name="height_max"
+            min= "1"
             onChange={changeHandler}
             value={form.height_max}
           />
-          {errors.height_min && <span>{errors.height_min}</span>} 
+          {errors.height_min && <span>{errors.height_min}</span>}
         </div>
         <div>
           <label>Minimum height</label>
           <input
             type="number"
             name="height_min"
+            min= "1"
             onChange={changeHandler}
             value={form.height_min}
           />
-          {errors.height_min && <span>{errors.height_min}</span>} 
+          {errors.height_min && <span>{errors.height_min}</span>}
         </div>
         <div>
           <label>Maximum weight</label>
           <input
             type="number"
-            name=" weight_max"
+            name="weight_max"
+            min= "1"
             onChange={changeHandler}
             value={form.weight_max}
           />
-          {errors.weight_min && <span>{errors.weight_min}</span>} 
+          {errors.weight_min && <span>{errors.weight_min}</span>}
         </div>
         <div>
           <label>Minimum weight</label>
           <input
             type="number"
             name="weight_min"
+            min= "1"
             onChange={changeHandler}
             value={form.weight_min}
           />
-          {errors.weight_min && <span>{errors.weight_min}</span>} 
+          {errors.weight_min && <span>{errors.weight_min}</span>}
         </div>
         <div>
           <label>Maximum life span</label>
           <input
             type="number"
             name="life_span_max"
+            min= "1"
             onChange={changeHandler}
             value={form.life_span_max}
           />
-          {errors.life_span_min && <span>{errors.life_span_min}</span>} 
+          {errors.life_span_min && <span>{errors.life_span_min}</span>}
         </div>
         <div>
           <label>Minimum life span</label>
           <input
             type="number"
             name="life_span_min"
+            min= "1"
             onChange={changeHandler}
             value={form.life_span_min}
           />
@@ -127,18 +140,17 @@ const Form = () => {
         </div>
         <div>
           <label>First temperament</label>
-          <select 
-            placeholder= "first_temperament"
+          <select
+            placeholder="first_temperament"
             name="first_temperament"
-            onChange={changeHandler}>
-              {/* {let dogsAPI = axios.get(URL);
-              dogsAPI.data.map((dog) => (
-                    <option value={dog.temperament}>{dog.temperament}</option>
-                ))}
-               */}
-            </select>
+            onChange={changeHandler}
+          >
+            {/* {temperaments.map((temperament) => (
+              <option value={temperament}></option>
+            ))} */}
+          </select>
           {errors.first_temperament && <span>{errors.first_temperament}</span>}
-        </div> 
+        </div>
         <button type="submit">Submit</button>
       </form>
     </div>

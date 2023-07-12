@@ -1,8 +1,8 @@
-const regex = /^([a-zA-Z]+)(\s[a-zA-Z]+)*$/
+const regex = /^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]*$/
 
 export const validation = (form) => {
-    // piso las propiedades del objeto errors, debería agregar más cuando hago el estado de errors?
     const errors = {};
+    
     if(regex.test(form.name) || !form.name ){
       errors.name = "";
     } else {
@@ -33,27 +33,6 @@ export const validation = (form) => {
       errors.first_temperament = "You must choose at least one temperament for your dog";
     } else {
         errors.first_temperament= "";
-    }
-
-
-    if(form.height_min <= 0 || form.height_max <= 0) {
-        errors.height_min= "Dog's height cannot be a negative number";
-      } else {
-        errors.height_min= "";
-    }
-
-  
-      if(form.weight_min <= 0 || form.weight_max <= 0) {
-          errors.weight_min =  "Dog's weight cannot be a negative number";
-      } else {
-        errors.weight_min= "";
-    }
-
-  
-      if(form.life_span_min <= 0 || form.life_span_max <= 0) {
-        errors.life_span_min = "Dog's life span cannot be a negative number";
-      } else {
-        errors.life_span_min = "";
     }
 
     
