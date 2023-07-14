@@ -1,72 +1,99 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { validation } from "./validation";
-
-const URL = "http://localhost:3001/dogs";
+import {getTemperaments, createDog} from "../../redux/actions"
 
 const Form = () => {
+  const temperaments = useSelector((state) => state.temperaments);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, [dispatch]);
+
+  
   const [form, setForm] = useState({
     name: "",
+    image: "",
     height_max: "",
     height_min: "",
     weight_max: "",
     weight_min: "",
     life_span_max: "",
     life_span_min: "",
-    first_temperament: "",
-    second_temperament: "",
-    third_temperament: "",
+    temperaments: []
   });
-
+  
+  useEffect(() => {
+    setErrors(validation(form));
+  }, [form]);
   const [errors, setErrors] = useState({
     name: "",
-    height_max: "",
+    image: "",
     height_min: "",
-    weight_max: "",
     weight_min: "",
-    life_span_max: "",
     life_span_min: "",
-    first_temperament: "",
+    temperaments: []
   });
 
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
     setForm({ ...form, [property]: value });
-    setErrors(validation({ ...form, [property]: value }));
   };
-
   const submitHandler = (event) => {
     event.preventDefault();
-
+console.log(errors)
     if (
-      !form.name ||
-      !form.height_max ||
-      !form.height_min ||
-      !form.weight_max ||
-      !form.weight_min ||
-      !form.life_span_max ||
-      !form.life_span_min ||
-      !form.first_temperament
-    ) {
-      return alert("You must complete all fields in order to create your dog");
-    }
-    axios
-      .post(URL, form)
-      .then((res) => alert(res))
-      .catch((error) => error(error));
-    alert("Dog created succesfully!");
+      !errors.name &&
+      !errors.height_min &&
+      !errors.weight_min &&
+      !errors.life_span_min &&
+      !errors.temperaments ) {
+
+      dispatch(createDog(form));
+      alert("Dog created succesfully!");
+      
+      setForm({
+        name: "",
+          image: "",
+          height_max: "",
+          height_min: "",
+          weight_max: "",
+          weight_min: "",
+          life_span_max: "",
+          life_span_min: "",
+          temperaments: []
+      });
+    } 
   };
 
+  const selectHandler = (event) => {
+    const selectedTempName = event.target.value;
+    const selectedTempID = event.target.options[event.target.selectedIndex].id;
+    const newState = {...form}
+
+    newState.temperaments = [...newState.temperaments, {id: selectedTempID, name: selectedTempName}]
+    setForm(newState);
+  };
+
+  const deleteTemp = (temperament) => {
+    setForm({
+      ...form,
+      temperaments: form.temperaments.filter((temp) => temp !== temperament),
+    })
+  }
+console.log(form.temperaments)
   return (
     <div>
-      <h1>Estás en Form</h1>
+      <h1>Create your own dog</h1>
       <form onSubmit={submitHandler}>
         <div>
-          <label>Name</label>
+          <label>Breed</label>
           <input
             type="text"
             name="name"
+            placeholder="e.g: Schnouzer"
             onChange={changeHandler}
             value={form.name}
           />
@@ -77,7 +104,7 @@ const Form = () => {
           <input
             type="number"
             name="height_max"
-            min= "1"
+            min="1"
             onChange={changeHandler}
             value={form.height_max}
           />
@@ -88,7 +115,7 @@ const Form = () => {
           <input
             type="number"
             name="height_min"
-            min= "1"
+            min="1"
             onChange={changeHandler}
             value={form.height_min}
           />
@@ -99,7 +126,7 @@ const Form = () => {
           <input
             type="number"
             name="weight_max"
-            min= "1"
+            min="1"
             onChange={changeHandler}
             value={form.weight_max}
           />
@@ -110,7 +137,7 @@ const Form = () => {
           <input
             type="number"
             name="weight_min"
-            min= "1"
+            min="1"
             onChange={changeHandler}
             value={form.weight_min}
           />
@@ -121,7 +148,7 @@ const Form = () => {
           <input
             type="number"
             name="life_span_max"
-            min= "1"
+            min="1"
             onChange={changeHandler}
             value={form.life_span_max}
           />
@@ -132,25 +159,42 @@ const Form = () => {
           <input
             type="number"
             name="life_span_min"
-            min= "1"
+            min="1"
             onChange={changeHandler}
             value={form.life_span_min}
           />
           {errors.life_span_min && <span>{errors.life_span_min}</span>}
         </div>
         <div>
-          <label>First temperament</label>
+        <label>Image: </label>
+        <input
+          type="url"
+          placeholder="e.g: http://myimageontheweb.com"
+          value={form.image}
+          onChange={changeHandler}
+          name="image"
+        />
+      </div>
+        <div>
+          <label>Temperaments</label>
           <select
-            placeholder="first_temperament"
-            name="first_temperament"
-            onChange={changeHandler}
+            name="temperaments"
+            onChange={selectHandler}
           >
-            {/* {temperaments.map((temperament) => (
-              <option value={temperament}></option>
-            ))} */}
+            {temperaments?.map((temperament) => (
+              <option key={temperament.id} value={temperament.name} id={temperament.id} > {temperament.name}</option>
+            ))}
           </select>
-          {errors.first_temperament && <span>{errors.first_temperament}</span>}
         </div>
+        {errors.temperaments && <span>{errors.temperaments}</span>}
+
+              <h2>Selected temperaments</h2>
+              <div>
+                {form.temperaments && form.temperaments.map((temperament) => (
+                  <span key={temperament.id} onClick={()=> deleteTemp((temperament))}>{temperament.name}</span>
+                ))}
+              </div>
+
         <button type="submit">Submit</button>
       </form>
     </div>

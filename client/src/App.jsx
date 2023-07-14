@@ -1,17 +1,10 @@
 import { Home, Landing, Detail, Form, About } from "./views";
 import NavBar from "./components/NavBar/NavBar";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
 import "./App.css";
-
-
 
 function App() {
   const {pathname} = useLocation();
-
-  const [dogs, setDogs] = useState([]);
-
 
   return (
     <div className="App">

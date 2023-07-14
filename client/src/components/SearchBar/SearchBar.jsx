@@ -1,17 +1,41 @@
 import { useState } from "react";
-import style from "./SearchBar.module.css"
+import { useDispatch } from "react-redux";
+import { getDogByName, getDogs } from "../../redux/actions";
+import style from "./SearchBar.module.css";
 
-export default function SearchBar({onSearch}) {
-   const [name, setName] = useState([]);
+export default function SearchBar() {
+   const dispatch = useDispatch();
 
-   const handleChange = (event) => {
-    setName(event.target.value)
-   }
+   const [search, setSearch] = useState("");
 
-   return (
-      <div>
-          <input className={style.search} onChange={handleChange} value={name} />
-         <button className={style.button} onClick={()=>onSearch(name)}>Search</button> 
-      </div>
-   );
+
+   const searchHandler = (event) => {
+     setSearch(event.target.value);
+     if(search === ""){
+      dispatch(getDogs())
+     }
+   };
+ 
+   const submitHandler = (event) => {
+    event.preventDefault();
+    
+     dispatch(getDogByName(search));
+     setSearch("");
+
+   };
+
+  return (
+    <div>
+      <input
+        id="search"
+        placeholder="Search by breed..."
+        type="text"
+        value={search}
+        onChange={searchHandler}
+      />
+      <button className={style.button} onClick={(event) => submitHandler(event)}>
+        Search
+      </button>
+    </div>
+  );
 }

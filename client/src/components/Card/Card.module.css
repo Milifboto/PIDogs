@@ -1,9 +1,57 @@
 .container {
     border-radius: 15px;
-    margin: 10px;
-    background-color: orange;
-    width: 10%;
+    padding: 25px;
+    margin: 20px;
+    background-color: transparent;
+    width: 200px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.imageContainer {
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    margin-block: 5px;
+  
+}
+
+.dogImage {
+    display: block;
+  margin-top: 10px;
+  width: 250px;
+  height: 200px;
+  border-radius: 15px;
+  height: auto;
+}
+
+.atributes {
+  border-radius: 15px;
+  background-color: #fe7829;
+  width: 250px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail{
+  padding-bottom: 10px;
+  background-color: #faf2e8;
+    color: red;
+    border-radius: 20px;
+    border-color: transparent;
+    font-size: small;
+    margin: 15px;
+    padding: 5px;
+    height: 30px;
+    width: 60px;
+}
+
+.detail:hover{
+  cursor: pointer;
+  -moz-osx-font-smoothing:grayscale;
 }

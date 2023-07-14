@@ -1,5 +1,4 @@
 .container {
-    border: 1px solid orange;
     border-radius: 15px;
     display: flex;
     flex-direction: row;

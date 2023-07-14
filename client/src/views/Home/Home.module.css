@@ -1,0 +1,32 @@
+.container {
+    background-color: #ffdab9;
+}
+
+.filtros {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding-top: 10px;
+}
+
+.select {
+    padding-bottom: 10px;
+    background-color: #faf2e8;
+    color: red;
+    border-radius: 20px;
+    border-color: transparent;
+    font-size: small;
+    margin: 15px;
+    padding: 5px;
+    height: 30px;
+    width: 60px;
+}
+
+.select:hover{
+    cursor: pointer;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+.select:focus{
+outline: none;
+}

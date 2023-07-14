@@ -1,0 +1,37 @@
+.container {
+   display: flex;
+   flex-direction: row;
+   background-color: orange;
+   justify-content: center;
+   align-items: center;
+
+}
+
+.title {
+    color: #faf2e8;
+
+}
+
+
+.button{
+    background-color: #faf2e8;
+    color: red;
+    border-radius: 20px;
+    border-color: transparent;
+    font-size: medium;
+    margin: 15px;
+    padding: 5px;
+    height: 40px;
+    width: 90px;
+}
+.landingPhoto{
+    width: 350px;
+    height: 500px;
+    display: flex;
+    justify-content: flex-end;
+}
+.imageContainer{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}

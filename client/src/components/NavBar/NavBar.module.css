@@ -1,6 +1,22 @@
 .container {
     display: flex;
     flex-wrap: row wrap;
-    background-color:bisque;
+    background-color: #fe7829;
     justify-content: space-around;
+    align-items: center;
+}
+
+.pawprint{
+    width: 50px;
+    height: 50px;
+}
+
+.links {
+    text-decoration: none;
+    color: #ffdab9;
+}
+
+.links:hover{
+    cursor: pointer;
+    -moz-osx-font-smoothing:grayscale;
 }
