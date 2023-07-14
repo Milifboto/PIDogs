@@ -22,7 +22,7 @@ const { conn } = require("./src/db.js");
 const {dbTemperaments} = require("./src/controllers/tempControllers.js");
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   dbTemperaments().then(() => {
     server.listen(3001, () => {
       console.log("%s listening at 3001"); // eslint-disable-line no-console

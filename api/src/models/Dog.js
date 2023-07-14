@@ -11,16 +11,16 @@ module.exports = (sequelize) => {
       primaryKey: true
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        noNumbers(value){
-          if(/\d/.test(value)) throw Error("Dog's name cannot contain numbers")
-        }
-      }
+      // validate: {
+      //   noNumbers(value){
+      //     if(/\d/.test(value)) throw Error("Dog's name cannot contain numbers")
+      //   }
+      // }
     },
     height_max: {
       type: DataTypes.INTEGER,
@@ -29,11 +29,11 @@ module.exports = (sequelize) => {
     height_min: {
       type: DataTypes.INTEGER,
       allowNull: false,
-       validate: {
-         minHeightValidation(value) {
-           if(value >= this.height_max) throw Error("The minimum height must be lower than the maximum height")
-         }
-       }
+      //  validate: {
+      //    minHeightValidation(value) {
+      //      if(value >= this.height_max) throw Error("Database error: The minimum height must be lower than the maximum height")
+      //    }
+      //  }
     },
     weight_max: {
       type: DataTypes.INTEGER,
@@ -42,11 +42,11 @@ module.exports = (sequelize) => {
     weight_min: {
       type: DataTypes.INTEGER,
       allowNull: false,
-       validate: {
-         minWeightValidation(value) {
-           if(value >= this.weight_max) throw Error("The minimum weight must be lower than the maximum weight")
-         }
-       }
+      //  validate: {
+      //    minWeightValidation(value) {
+      //      if(value >= this.weight_max) throw Error("Database error:The minimum weight must be lower than the maximum weight")
+      //    }
+      //  }
     },
     life_span_max: {
       type: DataTypes.INTEGER,
@@ -55,11 +55,11 @@ module.exports = (sequelize) => {
     life_span_min:{
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate: {
-        minWeightValidation(value) {
-          if(value >= this.life_span_max) throw Error("The minimum life span must be lower than the maximum life span")
-        }
-      }
+      // validate: {
+      //   minLifeSpantValidation(value) {
+      //     if(value >= this.life_span_max) throw Error("Database error:The minimum life span must be lower than the maximum life span")
+      //   }
+      // }
     },
     created: {
       type: DataTypes.BOOLEAN,
