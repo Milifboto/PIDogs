@@ -4,7 +4,7 @@ export const validation = (form) => {
   const errors = {};
 
   if (!(regex.test(form.name))) {
-    errors.name = `${form.name} is not valid, dog's breed names cannot contain numbers`;
+    errors.name = `${form.name} is not valid, dog's breed names cannot contain numbers or special characters`;
   } else if (!form.name) {
     errors.name = "Breed name is required"
   } else if (form.name.length < 3){

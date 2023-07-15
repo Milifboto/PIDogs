@@ -110,9 +110,7 @@ const getDogsByName = async (name) => {
     where: { name: { [Op.iLike]: `%${name}%` } },
   });
 
-  const { data } = await axios(
-    `https://api.thedogapi.com/v1/breeds?api_key=${APIKEY}`
-  );
+  const { data } = await axios(URL);
   const dogsAPI = data?.map((dog) => { 
     const [height_min, height_max] = dog.height.metric.split("-")
     const [weight_min, weight_max] = dog.weight.metric.split("-")

@@ -4,7 +4,8 @@ import {
   GET_TEMPERAMENTS,
   GET_DOGS_BY_NAME,
   ALPHABETICAL_ORDER,
-  CREATE_DOG
+  CREATE_DOG,
+  GET_DOG_DETAIL
 } from "./action-types";
 const URL = "http://localhost:3001";
 
@@ -34,17 +35,16 @@ export const createDog = (form) =>  {
   };
 };
 
-// export const getDogDetail = (id) => {
-//     return async function (dispatch) {
-//         try {
-//             const response = await axios.get(`${URL}/dogs/${id}`);
-//             const {data} =response;
-//             return dispatch({type: GET_DOG_DETAIL, payload: data})
-//         } catch (error) {
-//             console.log(error.message)
-//         }
-//     }
-// }
+export const getDogDetail = (id) => {
+    return async function (dispatch) {
+        try {
+            const response = await axios.get(`${URL}/dogs/${id}`);
+            return dispatch({type: GET_DOG_DETAIL, payload: response.data})
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+}
 
 export const getTemperaments = () => {
   const endpoint = `${URL}/temperaments`;

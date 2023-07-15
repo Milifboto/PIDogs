@@ -1,6 +1,9 @@
+import style from "./About.module.css"
+
+
 const About = () => {
     return (
-        <div>
+        <div className={style.container}>
             <h1>Estás en About</h1>
         </div>
     )

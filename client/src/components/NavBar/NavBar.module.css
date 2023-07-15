@@ -14,6 +14,8 @@
 .links {
     text-decoration: none;
     color: #ffdab9;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
 }
 
 .links:hover{

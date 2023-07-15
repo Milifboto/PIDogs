@@ -28,13 +28,14 @@ export default function SearchBar() {
     <div>
       <input
         id="search"
-        placeholder="Search by breed..."
+        placeholder=" search by breed..."
         type="text"
         value={search}
         onChange={searchHandler}
+        className={style.search}
       />
       <button className={style.button} onClick={(event) => submitHandler(event)}>
-        Search
+        search
       </button>
     </div>
   );

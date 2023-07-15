@@ -25,13 +25,12 @@ const getDogByID = async (req, res) => {
   try {
     if (id) {
       const dog = await getDogsByID(id);
-      if (!dog.length)
-        return res.status(404).json({ error: `Dog ${id} not found` });
-      return res.status(200).json(dog);
+      if (!dog.length) {
+        res.status(404).json({ error: `Dog ${id} not found` });
+      } else {
+        return res.status(200).json(dog);
+      }
     }
-    // else {
-    //   return res.status(400).json({ error: "missing id" });
-    // }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

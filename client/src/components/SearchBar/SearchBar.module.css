@@ -1,0 +1,30 @@
+.search {
+border-radius: 15px;
+border: none;
+width: 250px;
+height: 25px;
+margin-right: -100px;
+background-color: #faf2e8;
+font-family: 'Poppins', sans-serif;
+}
+
+.button {
+    border-radius: 15px;
+    border: transparent;
+    width: 100px;
+    height: 27px;
+    background-color: #ffd437;
+    font-family: 'Poppins', sans-serif;
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+.search:focus{
+    outline: none;
+    }
+
+.search:hover{
+    cursor:text ;
+}

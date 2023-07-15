@@ -20,6 +20,7 @@
     padding: 5px;
     height: 30px;
     width: 60px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .select:hover{

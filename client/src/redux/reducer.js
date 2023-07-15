@@ -5,6 +5,7 @@ import {
   ALPHABETICAL_ORDER,
   WEIGHT_ORDER,
   CREATE_DOG,
+  GET_DOG_DETAIL
 } from "./action-types";
 
 const inicialState = {
@@ -23,6 +24,9 @@ const rootReducer = (state = inicialState, action) => {
 
     case GET_DOGS_BY_NAME:
       return { ...state, dogs: action.payload };
+
+    case GET_DOG_DETAIL:
+      return {...state, dogs: action.payload}
 
     case CREATE_DOG: 
     return {...state}

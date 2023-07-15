@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import style from "./Card.module.css";
 
 const Card = ({id, name, image, height, weight, life_span}) => {
-  console.log(image)
   return (
     <div className={style.container}>
       <div className={style.imageContainer}>
@@ -23,7 +22,7 @@ const Card = ({id, name, image, height, weight, life_span}) => {
           {`Life span ${life_span}`}
           <br/>
         </p>
-          <Link to="/detail"><button className={style.detail} >Detail</button></Link>
+          <Link to={`/detail/${id}`}><button className={style.detail}>Detail</button></Link>
       </div>
       
     </div>
