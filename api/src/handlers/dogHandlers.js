@@ -43,7 +43,7 @@ const postDogHandler = async (req, res) => {
     height_max,
     weight_min,
     weight_max,
-    temperaments,
+    temperament,
     life_span_min,
     life_span_max,
     image,
@@ -54,7 +54,7 @@ const postDogHandler = async (req, res) => {
     !height_max ||
     !weight_min ||
     !weight_max ||
-    temperaments.length === 0||
+    temperament.length === 0||
     !life_span_min ||
     !life_span_max
   ) {
@@ -67,7 +67,7 @@ const postDogHandler = async (req, res) => {
       height_max,
       weight_min,
       weight_max,
-      temperaments,
+      temperament,
       life_span_min,
       life_span_max,
       image

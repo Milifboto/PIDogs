@@ -1,12 +1,11 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Card from "../Card/Card";
 import style from "./Cards.module.css";
 
-const Cards = () => {
-  const dogs = useSelector((state) => state.dogs);
+const Cards = ({currentDogs}) => {
   return (
     <div className={style.container}>
-      {dogs.map(
+      {currentDogs?.map(
         ({
           id,
           name,

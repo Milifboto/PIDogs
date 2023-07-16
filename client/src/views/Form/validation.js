@@ -36,7 +36,7 @@ export const validation = (form) => {
     errors.life_span_min = "";
   }
 
-  if (form.temperaments.length === 0) {
+  if (form.temperament.length === 0) {
     errors.temperaments = "The dog must have at least one temperament to be created";
   } else {
     errors.temperaments = "";

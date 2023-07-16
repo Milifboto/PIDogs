@@ -5,7 +5,9 @@ import {
   GET_DOGS_BY_NAME,
   ALPHABETICAL_ORDER,
   CREATE_DOG,
-  GET_DOG_DETAIL
+  GET_DOG_DETAIL,
+  FILTER_TEMPERAMENTS,
+  RESET
 } from "./action-types";
 const URL = "http://localhost:3001";
 
@@ -47,10 +49,9 @@ export const getDogDetail = (id) => {
 }
 
 export const getTemperaments = () => {
-  const endpoint = `${URL}/temperaments`;
   return async function (dispatch) {
     try {
-      const response = await axios.get(endpoint);
+      const response = await axios.get(`${URL}/temperaments`);
       const temperaments = response.data?.map((temp) => ({
         id: temp.id,
         name: temp.name,
@@ -69,9 +70,30 @@ export function orderedAlphabetically(order) {
   };
 }
 
-export function orderedByWeight(order) {
+export function reset() {
   return {
-    type: WEIGHT_ORDER,
-    payload: order,
+    type: RESET,
   };
 }
+
+export const filterByTemperament = (temperaments) => {
+  return {
+    type: FILTER_TEMPERAMENTS,
+    payload: temperaments,
+  };
+};
+
+// export const temperamentFiltered = (temperaments) => {
+//   return async function (dispatch) {
+//     try {
+//       const APIDogs = await axios.get(URL);
+
+//       const dogs = APIDogs.data.filter((dog) => dog.temperament?.some((temp) => temperaments.includes(temp)));
+
+//       dispatch({ type: FILTER_TEMPERAMENTS, payload: dogs });
+//     } catch (error) {
+//       console.log(error.message);
+//     }
+//   };
+   
+// }

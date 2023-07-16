@@ -58,7 +58,7 @@ const getAllDogs = async () => {
       life_span_max,
       life_span_min,
       image,
-      temperaments: [...Temperaments]?.map((t) => t.name), // Crear una nueva propiedad "temperament" y asignarle los temperamentos unidos en una cadena
+      temperament: [...Temperaments]?.map((t) => t.name), // Crear una nueva propiedad "temperament" y asignarle los temperamentos unidos en una cadena
     };
   });
 
@@ -73,7 +73,7 @@ const createDog = async (
   height_max,
   weight_min,
   weight_max,
-  temperaments,
+  temperament,
   life_span_min,
   life_span_max,
   image
@@ -95,13 +95,13 @@ const createDog = async (
     life_span_max,
     image
   });  
-  await newDog.addTemperaments(temperaments);
+  await newDog.addTemperaments(temperament);
   
   let dog = await Dog.findByPk(newDog.id);
   let dogTemperaments = await dog.getTemperaments(); //me traigo todos los tempramentos de el perro encontrado por od
   let temperamentsNames = dogTemperaments?.map((temperament) => temperament.name); //hago que me traiga los name
 
-  return { ...dog.toJSON(), temperaments: temperamentsNames }; // traigo el dog parseado y los names de sus temperamentooos
+  return { ...dog.toJSON(), temperament: temperamentsNames }; // traigo el dog parseado y los names de sus temperamentooos
 };
 
 

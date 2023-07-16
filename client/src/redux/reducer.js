@@ -3,9 +3,10 @@ import {
   GET_TEMPERAMENTS,
   GET_DOGS_BY_NAME,
   ALPHABETICAL_ORDER,
-  WEIGHT_ORDER,
   CREATE_DOG,
-  GET_DOG_DETAIL
+  GET_DOG_DETAIL,
+  RESET,
+  FILTER_TEMPERAMENTS
 } from "./action-types";
 
 const inicialState = {
@@ -31,6 +32,16 @@ const rootReducer = (state = inicialState, action) => {
     case CREATE_DOG: 
     return {...state}
 
+    case FILTER_TEMPERAMENTS:
+      // con la función some() verifico si alguno de sus temperamentos coincide con al menos uno de los temperamentos seleccionados.
+      let filteredDogs = state.copyDogs.filter((dog) =>
+      dog.temperament.some((temp) => action.payload.includes(temp))
+    );
+    return {
+      ...state,
+      dogs: filteredDogs,
+    };
+
     case ALPHABETICAL_ORDER:
       let ordered_alphabetically;
       if (action.payload === "A-Z") {
@@ -46,6 +57,12 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         dogs: [...ordered_alphabetically],
       };
+      case RESET:
+      return {
+        ...state,
+        copyDogs: state.dogs,
+      };
+
     default:
       return { ...state };
   }

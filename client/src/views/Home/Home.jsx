@@ -1,40 +1,40 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Cards from "../../components/Cards/Cards";
-import { getDogs } from "../../redux/actions";
 import style from "./Home.module.css"
+import { getDogs} from "../../redux/actions";
+import SideBar from "../../components/SideBar/SideBar";
+import Pagination from "../../components/Pagination/Pagination";
 
-import { orderedAlphabetically, orderedByWeight } from "../../redux/actions";
 
 const Home = () => {
   const dispatch = useDispatch();
+  
+  const allDogs = useSelector((state) => state.dogs);
+  const [currentPage, setCurrentPage] = useState(1); //estado que almacena el número de página actual.
+  const [dogsPerPage] = useState(9); //almacena la cantidad de perros por página.
+  const indexOfLastDog = currentPage * dogsPerPage; //calcula el índice del último perro en la página actual (pag 1, 9 perros)
+  const indexOfFirstDog = indexOfLastDog - dogsPerPage; // calcula el índice del primer perro en la página actual (9 - 9)
+  const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog); // muestra solo los perros de la página actual.
+  // Toma dos parámetros: el índice inicial y el índice final de la porción que quiero obtener.
+  const pagination = (pageNumber) => { // función que recibe un número de página y actualiza el estado de currentPage con ese valor.
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     dispatch(getDogs());
   }, [dispatch]);
 
-  function handleSortAlphabetically(event) {
-    dispatch(orderedAlphabetically(event.target.value));
-  }
-
-  function handleSortWeight(event) {
-    dispatch(orderedByWeight(event.target.value));
-  }
-
   return (
     <div className={style.container} >
-      <div className={style.filtros} >
-        <select
-        placeholder="Order alphabetically"
-        onChange={handleSortAlphabetically}
-        className={style.select}
-      >
-        {["A-Z", "Z-A"].map((order) => (
-          <option value={order}>{order}</option>
-        ))}
-      </select> 
-      </div>
-      <Cards />
+      <SideBar/>
+      <Pagination
+          dogsPerPage={dogsPerPage}
+          allDogs={allDogs.length}
+          pagination={pagination}
+          currentPage={currentPage}
+        />
+      <Cards currentDogs ={currentDogs} />
     </div>
   );
 };

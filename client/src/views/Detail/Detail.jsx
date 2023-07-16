@@ -1,8 +1,6 @@
 import styles from "./Detail.module.css";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-// import { getDogDetail } from "../../redux/actions";
-// import { useDispatch } from "react-redux";
 import axios from "axios";
 
 
@@ -40,11 +38,7 @@ const Detail = () => {
       <p>Height {height_min} - {height_max}</p>
       <p>Weight {weight_min} - {weight_max}</p>
       <p>Life Span {life_span_min} - {life_span_max} years</p>
-      {temperament ? (
-        <p>Temperament: {temperament?.join(", ")}</p>
-      ) : (
-        <p>Temperament: {temperament?.join(", ")}</p>
-      )}
+      <p>Temperaments {temperament?.join(", ")}</p>
     </div>
   );
 };
