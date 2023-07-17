@@ -1,50 +1,54 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getTemperaments,
-  orderedAlphabetically,
+  orderedAlphabeticallyAndByWeight,
   reset,
   filterByTemperament,
+  filterByOrigin
 } from "../../redux/actions";
 import style from "./SideBar.module.css";
 
-const SideBar = () => {
+const SideBar = ({setCurrentPage}) => {
   const dispatch = useDispatch();
-
-  const allDogs = useSelector((state) => state.dogs);
-
   const allTemps = useSelector((state) => state.temperaments);
 
   useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
 
-  const [selectedTemperaments, setSelectedTemperaments] = useState([]);
-
  const temperamentFilterHandler = (event) => {
-  const selectedOptions = Array.from(event.target.selectedOptions);
-  const selectedTemperaments = selectedOptions.map((option) => option.value);
-  setSelectedTemperaments(selectedTemperaments);
-  dispatch(filterByTemperament(selectedTemperaments));
+  const value = event.target.value;
+  dispatch(filterByTemperament(value)); 
+  setCurrentPage(1)
 };
 
-  function handleSortAlphabetically(event) {
-    dispatch(orderedAlphabetically(event.target.value));
+  function handleSortAlphabeticallyAndByWeight(event) {
+    dispatch(orderedAlphabeticallyAndByWeight(event.target.value));
+    setCurrentPage(1);
   }
 
-  function handleReset(event) {
+  function filterOriginHandler(event) {
+    const value = event.target.value;
+    console.log(value)
+    dispatch(filterByOrigin(value))
+    setCurrentPage(1)
+  }
+
+  function handleReset() {
     dispatch(reset());
+    setCurrentPage(1);
   }
 
   return (
     <div className={style.container}>
-      <div className={style.filtros}>
+      <div className={style.selectContainer}>
         <select
-          placeholder="Order alphabetically"
-          onChange={handleSortAlphabetically}
+          placeholder="Order"
+          onChange={handleSortAlphabeticallyAndByWeight}
           className={style.select}
         >
-          {["A-Z", "Z-A"].map((order) => (
+          {["A-Z", "Z-A", "lighter to heavier", "heavier to lighter"].map((order) => (
             <option key={order} value={order}>
               {order}
             </option>
@@ -52,14 +56,30 @@ const SideBar = () => {
         </select>
       </div>
 
-      <div className={style.filtros}>
+      <div className={style.selectContainer}>
+        <select
+          name="origin"
+          value="dog"
+          onChange={filterOriginHandler}
+          className={style.selectFilter}
+        >
+          <option>Select origin</option>
+          <option value="all">All</option>
+          <option name="New breeds" value="New breeds">
+            New breeds
+          </option>
+          <option name="Breeds API" value="Breeds API">
+            Other breeds
+          </option>
+        </select>
+      </div>
+
+      <div className={style.selectContainer}>
         <select 
         placeholder="temperaments" 
         onChange={temperamentFilterHandler}
-        className={style.select}
+        className={style.selectFilter}
         >
-            
-        
           {allTemps?.map((temperament) => (
             <option
               key={temperament.name}
@@ -71,8 +91,10 @@ const SideBar = () => {
           ))}
         </select>
       </div >
-
-      <button className={style.reset} onClick={handleReset}>Reset Filters</button>
+            <div className={style.selectContainer}>
+              <button className={style.reset} onClick={handleReset}>Reset Filters</button>
+            </div>
+      
     </div>
   );
 };

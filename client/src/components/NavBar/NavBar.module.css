@@ -4,16 +4,32 @@
     background-color: #fe7829;
     justify-content: space-around;
     align-items: center;
+    height: 70px;
+    gap: 8rem;
 }
 
 .pawprint{
     width: 50px;
     height: 50px;
+    margin-left: 70px;
+    transition: all 400ms ease;
+}
+
+.pawprint:hover{
+    transform: scale(1.1);
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition-duration: .4s;
+}
+
+.arrow{
+    width: 2rem;
+    height: 2rem;
 }
 
 .links {
     text-decoration: none;
     color: #ffdab9;
+    font-size: 20px;
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
 }
@@ -21,4 +37,8 @@
 .links:hover{
     cursor: pointer;
     -moz-osx-font-smoothing:grayscale;
+}
+
+.links:focus {
+    color: #ffd437;
 }

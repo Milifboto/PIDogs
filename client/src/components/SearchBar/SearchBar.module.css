@@ -4,7 +4,7 @@ border: none;
 width: 250px;
 height: 25px;
 margin-right: -100px;
-background-color: #faf2e8;
+background-color: #ffdab9;
 font-family: 'Poppins', sans-serif;
 }
 
@@ -12,7 +12,7 @@ font-family: 'Poppins', sans-serif;
     border-radius: 15px;
     border: transparent;
     width: 100px;
-    height: 27px;
+    height: 25px;
     background-color: #ffd437;
     font-family: 'Poppins', sans-serif;
 }

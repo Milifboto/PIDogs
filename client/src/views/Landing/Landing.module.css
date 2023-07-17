@@ -1,17 +1,25 @@
 .container {
    display: flex;
    flex-direction: row;
-   background-color: orange;
+   background-color: #fe7829;
    justify-content: center;
    align-items: center;
+   height: 617px;
+}
 
+.pawprint{
+    width: 60px;
+    height: 60px;
+    margin-left: 15px;
+    margin-bottom: 20px;
 }
 
 .title {
     color: #faf2e8;
-
+    font-size: 85px;
+    font-family: 'Poppins', sans-serif;
+    margin: 15px;
 }
-
 
 .button{
     background-color: #faf2e8;
@@ -24,6 +32,11 @@
     height: 40px;
     width: 90px;
 }
+
+.button:hover{
+    cursor: pointer;
+}
+
 .landingPhoto{
     width: 350px;
     height: 500px;
@@ -33,5 +46,5 @@
 .imageContainer{
     display: flex;
     justify-content: flex-end;
-    width: 100%;
+    
 }

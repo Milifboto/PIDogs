@@ -39,7 +39,7 @@ export const validation = (form) => {
   if (form.temperament.length === 0) {
     errors.temperaments = "The dog must have at least one temperament to be created";
   } else {
-    errors.temperaments = "";
+    errors.temperaments = [];
   }
 
   return errors;

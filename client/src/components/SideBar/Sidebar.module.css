@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.filtros {
+.selectContainer {
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -36,12 +36,35 @@
 outline: none;
 }
 
+.selectFilter {
+    padding-bottom: 10px;
+    background-color: #faf2e8;
+    color: red;
+    border-radius: 20px;
+    border-color: transparent;
+    font-size: small;
+    margin: 15px;
+    padding: 5px;
+    height: 30px;
+    width: 120px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    -moz-osx-font-smoothing:grayscale;
+}
+
 .reset{
     background-color: #faf2e8;
     color: red;
     border-radius: 20px;
     border-color: transparent;
-    width: fit-content;
-    height: fit-content;
+    margin: 15px;
+    padding: 5px;
+    height: 30px;
+    width: 120px;;
     font-family: 'Poppins', sans-serif;
+}
+
+.reset:hover {
+    cursor: pointer;
+    -moz-osx-font-smoothing:grayscale;
 }

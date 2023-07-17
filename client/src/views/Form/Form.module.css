@@ -1,7 +1,152 @@
 .container {
     font-family: 'Poppins', sans-serif;
+    background-color: #fe8a41;
+    display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   height: 566px;
+   margin: 0;
+
+}
+.title{
+    color: #ffdab9 ;
+    font-size: 17px;
+    margin: 5px;
+}
+
+.formCointainer{
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   margin-left: 170px;
+}
+
+.form{
+    background-color: #fe7829;
+    margin: 25px;
+    border-radius: 40px;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.label{
+    font-size: small;
+    color: #ffdab9 
+}
+
+.input{
+    padding-bottom: 10px;
+    background-color: #ffdab9;
+    border-radius: 20px;
+    border-color: transparent;
+    font-size: small;
+    margin: 4px;
+    padding: 5px;
+    height: 25px;
+    width: 120px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.input:focus{
+    outline: none;
+}
+
+.select {
+    padding-bottom: 10px;
+    background-color: #ffdab9;
+    color: #f1610e;
+    border-radius: 20px;
+    border-color: transparent;
+    font-size: small;
+    margin: 4px;
+    padding: 5px;
+    height: 30px;
+    width: 150px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.select:hover{
+    cursor: pointer;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+.select:focus{
+outline: none;
+}
+
+.selectImage{
+    padding-bottom: 10px;
+    background-color: #ffdab9;
+    border-radius: 20px;
+    border-color: transparent;
+    font-size: small;
+    margin: 4px;
+    padding: 5px;
+    height: 30px;
+    width: 200px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.selectImage:focus{
+    outline: none;
+}
+
+.image{
+    width: 450px;
+    height: 566px;
+    margin-left: 100px;
+}
+.imageContainer{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 }
 
 .errors {
-    color: #fd5712;
+    color: red;
+    font-size: 12px;
+    font-style: italic;
+    position: absolute;
+    background-color: #ffca9c;
+    border-radius: 15px 15px 15px 0px;
+    padding: 5px;
+}
+
+.selectedTempsTitle{
+    font-size: small;
+    margin-bottom: 10px;
+    color: #ffdab9 ;
+}
+
+.submit{
+    padding-bottom: 10px;
+    background-color: #ffdab9 ;
+    color: red;
+    border-radius: 20px;
+    border-color: transparent;
+    font-size: small;
+    margin-bottom: 6px;
+    padding: 2px;
+    height: 26px;
+    width: 60px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.submit{
+    cursor: pointer;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+.submit:focus{
+outline: none;
+}
+
+.spanTemp{
+    margin-right: 5px;
 }

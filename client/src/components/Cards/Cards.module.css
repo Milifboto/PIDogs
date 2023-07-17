@@ -1,8 +1,8 @@
 .container {
-    border-radius: 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    gap: 1em;
+    align-items: center;
+    background-color: #ffdab9;
 }

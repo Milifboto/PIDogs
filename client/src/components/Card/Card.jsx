@@ -13,7 +13,7 @@ const Card = ({id, name, image, height, weight, life_span}) => {
       </div>
         
       <div className={style.atributes} >
-      <h3>{name}</h3>
+      <h3 className={style.name}>{name}</h3>
         <p>
           {`Heigh ${height}`}
           <br />

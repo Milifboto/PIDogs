@@ -13,7 +13,7 @@ const Pagination = ({dogsPerPage, allDogs, pagination, currentPage}) => {
                 {
                     pageNumbers&&
                     pageNumbers.map((number) => ( // si pageNumbers existe, itero sobre cada número de página.
-                        <li className={style.number} key={number}>
+                        <li key={number}>
                             <div className={currentPage === number ? style.pageNumber__active : style.pageNumber} onClick={()=> pagination(number)}>{number}</div>
                         </li>
                     ))

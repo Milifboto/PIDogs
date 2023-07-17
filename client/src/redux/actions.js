@@ -3,11 +3,10 @@ import {
   GET_DOGS,
   GET_TEMPERAMENTS,
   GET_DOGS_BY_NAME,
-  ALPHABETICAL_ORDER,
-  CREATE_DOG,
-  GET_DOG_DETAIL,
+  ORDER,
   FILTER_TEMPERAMENTS,
-  RESET
+  RESET,
+  FILTER_ORIGIN
 } from "./action-types";
 const URL = "http://localhost:3001";
 
@@ -30,24 +29,6 @@ export const getDogByName = (name) => {
   };
 };
 
-export const createDog = (form) =>  {
-  return async function (dispatch) {
-    const postDog = await axios.post(`${URL}/dogs`, form);
-    dispatch({type: CREATE_DOG, payload: postDog.data});
-  };
-};
-
-export const getDogDetail = (id) => {
-    return async function (dispatch) {
-        try {
-            const response = await axios.get(`${URL}/dogs/${id}`);
-            return dispatch({type: GET_DOG_DETAIL, payload: response.data})
-        } catch (error) {
-            console.log(error.message)
-        }
-    }
-}
-
 export const getTemperaments = () => {
   return async function (dispatch) {
     try {
@@ -63,9 +44,9 @@ export const getTemperaments = () => {
   };
 };
 
-export function orderedAlphabetically(order) {
+export function orderedAlphabeticallyAndByWeight(order) {
   return {
-    type: ALPHABETICAL_ORDER,
+    type: ORDER,
     payload: order,
   };
 }
@@ -76,24 +57,16 @@ export function reset() {
   };
 }
 
-export const filterByTemperament = (temperaments) => {
+export const filterByTemperament = (value) => {
   return {
     type: FILTER_TEMPERAMENTS,
-    payload: temperaments,
+    payload: value,
   };
 };
 
-// export const temperamentFiltered = (temperaments) => {
-//   return async function (dispatch) {
-//     try {
-//       const APIDogs = await axios.get(URL);
-
-//       const dogs = APIDogs.data.filter((dog) => dog.temperament?.some((temp) => temperaments.includes(temp)));
-
-//       dispatch({ type: FILTER_TEMPERAMENTS, payload: dogs });
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   };
-   
-// }
+export const filterByOrigin = (value) => {
+  return async function (dispatch) {
+    dispatch({type: FILTER_ORIGIN, payload: value})
+  }
+ 
+} 

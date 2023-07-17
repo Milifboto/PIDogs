@@ -4,6 +4,7 @@ import { validation } from "./validation";
 import { getTemperaments} from "../../redux/actions";
 import axios from "axios";
 import style from "./Form.module.css";
+import image from "../../assets/createdog.png";
 
 const Form = () => {
   const allTemperaments = useSelector((state) => state.temperaments);
@@ -24,10 +25,7 @@ const Form = () => {
     life_span_min: "",
     temperament: [],
   });
-
-  useEffect(() => {
-    setErrors(validation(form));
-  }, [form]);
+  
   const [errors, setErrors] = useState({
     name: "",
     image: "",
@@ -41,6 +39,7 @@ const Form = () => {
     const property = event.target.name;
     const value = event.target.value;
     setForm({ ...form, [property]: value });
+    setErrors(validation({ ...form, [property]: value }));
   };
   const submitHandler = (event) => {
     event.preventDefault();
@@ -49,7 +48,7 @@ const Form = () => {
       errors.height_min ||
       errors.weight_min ||
       errors.life_span_min ||
-      errors.temperaments
+      errors.temperaments.length !== 0
     ) {
       alert("You must complete all fields to create a dog");
     } else {
@@ -76,15 +75,18 @@ const Form = () => {
       }};
 
   const selectHandler = (event) => {
-    const selectedTempName = event.target.value;
-    const selectedTempID = event.target.options[event.target.selectedIndex].id;
-    const newState = { ...form };
-
-    newState.temperament = [
-      ...newState.temperament,
-      { id: selectedTempID, name: selectedTempName },
-    ];
-    setForm(newState);
+    if(event.target.value && !form.temperament.some((temp) => temp.name === event.target.value)) {
+      const selectedTempName = event.target.value;
+      const selectedTempID = event.target.options[event.target.selectedIndex].id;
+      const newState = { ...form };
+  
+      newState.temperament = [
+        ...newState.temperament,
+        { id: selectedTempID, name: selectedTempName },
+      ];
+      setErrors(validation(newState));
+      setForm(newState);
+    }
   };
 
   const deleteTemp = (temperament) => {
@@ -95,35 +97,37 @@ const Form = () => {
   };
   return (
     <div className={style.container}>
-      <h1>Create your own dog</h1>
-      <form onSubmit={submitHandler}>
+      <div className={style.formCointainer}>
+      <form onSubmit={submitHandler} className={style.form} >
+      <h1 className={style.title}>Create your own dog</h1>
         <div>
-          <label>Breed</label>
+          <label className={style.label}>Breed</label>
           <input
+          className={style.input}
             type="text"
             name="name"
             placeholder="e.g: Schnouzer"
             onChange={changeHandler}
             value={form.name}
           />
-          {errors.name && <span className={style.errors}>{errors.name}</span>}
+          {errors.name && (<span className={style.errors}>{errors.name}</span>)}
         </div>
         <div>
-          <label>Maximum height</label>
+          <label className={style.label}>Maximum height</label>
           <input
+          className={style.input}
             type="number"
             name="height_max"
             min="1"
             onChange={changeHandler}
             value={form.height_max}
           />
-          {errors.height_min && (
-            <span className={style.errors}>{errors.height_min}</span>
-          )}
+          {errors.height_min && (<span className={style.errors}>{errors.height_min}</span>)}
         </div>
         <div>
-          <label>Minimum height</label>
+          <label className={style.label}>Minimum height</label>
           <input
+          className={style.input}
             type="number"
             name="height_min"
             min="1"
@@ -135,8 +139,9 @@ const Form = () => {
           )}
         </div>
         <div>
-          <label>Maximum weight</label>
+          <label className={style.label}>Maximum weight</label>
           <input
+          className={style.input}
             type="number"
             name="weight_max"
             min="1"
@@ -148,8 +153,9 @@ const Form = () => {
           )}
         </div>
         <div>
-          <label>Minimum weight</label>
+          <label className={style.label}>Minimum weight</label>
           <input
+          className={style.input}
             type="number"
             name="weight_min"
             min="1"
@@ -161,8 +167,9 @@ const Form = () => {
           )}
         </div>
         <div>
-          <label>Maximum life span</label>
+          <label className={style.label}>Maximum life span</label>
           <input
+          className={style.input}
             type="number"
             name="life_span_max"
             min="1"
@@ -174,8 +181,9 @@ const Form = () => {
           )}
         </div>
         <div>
-          <label>Minimum life span</label>
+          <label className={style.label}>Minimum life span</label>
           <input
+          className={style.input}
             type="number"
             name="life_span_min"
             min="1"
@@ -187,8 +195,9 @@ const Form = () => {
           )}
         </div>
         <div>
-          <label>Image </label>
+          <label className={style.label}>Image </label>
           <input
+          className={style.selectImage}
             type="url"
             placeholder="e.g: http://myimageontheweb.com"
             value={form.image}
@@ -197,8 +206,8 @@ const Form = () => {
           />
         </div>
         <div>
-          <label>Temperaments</label>
-          <select name="temperament" onChange={selectHandler}>
+          <label className={style.label}>Temperaments</label>
+          <select className={style.select} name="temperament" onChange={selectHandler}>
             {allTemperaments?.map((temperament) => (
               <option
                 key={temperament.name}
@@ -210,26 +219,27 @@ const Form = () => {
               </option>
             ))}
           </select>
+          {errors.temperaments && (<span className={style.errors}>{errors.temperaments}</span>)}
         </div>
-        {errors.temperaments && (
-          <span className={style.errors}>{errors.temperaments}</span>
-        )}
-
-        <h2>Selected temperaments</h2>
-        <div>
+        <h3 className={style.selectedTempsTitle}>Selected temperaments</h3>
+        <div className={style.label}>
           {form.temperament &&
             form.temperament.map((temp) => (
               <span
                 key={temp.id}
                 onClick={() => deleteTemp(temp)}
+                className={style.spanTemp}
               >
                 {temp.name}
               </span>
             ))}
         </div>
-
-        <button type="submit">Submit</button>
+        <button type="submit" className={style.submit}>Submit</button>
       </form>
+      </div>
+      <div className={style.imageContainer}>
+      <img src={image} alt="Create Dog Image" className={style.image}/>
+      </div>
     </div>
   );
 };

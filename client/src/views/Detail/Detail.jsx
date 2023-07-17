@@ -1,4 +1,4 @@
-import styles from "./Detail.module.css";
+import style from "./Detail.module.css";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -32,13 +32,21 @@ const Detail = () => {
     temperament,
   } = dogDetail;
   return (
-    <div className={styles.container}>
-      <h2>{name} </h2>
-      <img src={image} alt={name} />
-      <p>Height {height_min} - {height_max}</p>
-      <p>Weight {weight_min} - {weight_max}</p>
-      <p>Life Span {life_span_min} - {life_span_max} years</p>
-      <p>Temperaments {temperament?.join(", ")}</p>
+    <div className={style.container}>
+      <div className={style.textCointainer}>
+      <h2 className={style.name} >{name} </h2>
+      <p className={style.atributeTitle}  >Height</p>
+      <p className={style.atribute} >{height_min} - {height_max}</p>
+      <p className={style.atributeTitle}  >Weight</p>
+      <p className={style.atribute} > {weight_min} - {weight_max}</p>
+      <p className={style.atributeTitle}  >Life Span </p>
+      <p className={style.atribute} >{life_span_min} - {life_span_max} years</p>
+      <p className={style.atributeTitle}  >Temperaments</p>
+      <p className={style.atributeTemp} >{temperament?.join(", ")} </p>
+      </div>
+      <div>
+      <img src={image} alt={name} className={style.image} />
+      </div>
     </div>
   );
 };

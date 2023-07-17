@@ -1,63 +1,68 @@
 import {
   GET_DOGS,
   GET_TEMPERAMENTS,
-  GET_DOGS_BY_NAME,
-  ALPHABETICAL_ORDER,
-  CREATE_DOG,
-  GET_DOG_DETAIL,
+  ORDER,
   RESET,
-  FILTER_TEMPERAMENTS
+  FILTER_TEMPERAMENTS,
+  FILTER_ORIGIN,
+  GET_DOGS_BY_NAME,
 } from "./action-types";
+import { filterOriginHelper } from "./helpers";
 
 const inicialState = {
   dogs: [],
   temperaments: [],
-  copyDogs: [] //los filtros los hago sobre copydogs asi puedo encadenar filtros sobre los mismos perris
+  copyDogs: [], //los filtros los hago sobre copydogs asi puedo encadenar filtros sobre los mismos perris
 };
 
 const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
     case GET_DOGS:
-      return { ...state, dogs: action.payload, copyDogs: action.payload};
+      return { ...state, dogs: action.payload, copyDogs: action.payload };
 
     case GET_TEMPERAMENTS:
       return { ...state, temperaments: action.payload };
 
     case GET_DOGS_BY_NAME:
-      return { ...state, dogs: action.payload };
-
-    case GET_DOG_DETAIL:
-      return {...state, dogs: action.payload}
-
-    case CREATE_DOG: 
-    return {...state}
+        return {...state, copyDogs: action.payload};
 
     case FILTER_TEMPERAMENTS:
       // con la función some() verifico si alguno de sus temperamentos coincide con al menos uno de los temperamentos seleccionados.
-      let filteredDogs = state.copyDogs.filter((dog) =>
-      dog.temperament.some((temp) => action.payload.includes(temp))
-    );
-    return {
-      ...state,
-      dogs: filteredDogs,
-    };
+      let filteredDogs = state.dogs?.filter((dog) => {
+        return dog.temperament?.some((temp) => temp?.includes(action.payload));
+      });
+      return {
+        ...state,
+        copyDogs: filteredDogs,
+      };
 
-    case ALPHABETICAL_ORDER:
-      let ordered_alphabetically;
+    case ORDER:
+      let ordered;
       if (action.payload === "A-Z") {
-        ordered_alphabetically = state.dogs.sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
+        ordered = state.copyDogs.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (action.payload === "Z-A") {
+        ordered = state.copyDogs.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (action.payload === "lighter to heavier") {
+        ordered = state.copyDogs //filtro los valores null y desp ordeno
+          .filter((dog) => dog.weight_min !== null)
+          .sort((a, b) => a.weight_min - b.weight_min);
       } else {
-        ordered_alphabetically = state.dogs.sort((a, b) =>
-          b.name.localeCompare(a.name)
-        );
+        ordered = state.copyDogs
+          .filter((dog) => dog.weight_min !== null)
+          .sort((a, b) => b.weight_min - a.weight_min);
       }
       return {
         ...state,
-        dogs: [...ordered_alphabetically],
+        copyDogs: [...ordered],
       };
-      case RESET:
+
+    case FILTER_ORIGIN:
+      return {
+        ...state,
+        copyDogs: filterOriginHelper(state.dogs, action.payload),
+      };
+
+    case RESET:
       return {
         ...state,
         copyDogs: state.dogs,

@@ -23,6 +23,7 @@ const getAllDogs = async () => {
       life_span_min: parseInt(life_span_min),
       life_span_max: parseInt(life_span_max),
       temperament: dog.temperament?.split(", "),
+      created: false
     }
   });
 
@@ -46,6 +47,7 @@ const getAllDogs = async () => {
       life_span_max,
       life_span_min,
       image,
+      created,
       Temperaments,
     } = dog.toJSON();
     return {
@@ -58,6 +60,7 @@ const getAllDogs = async () => {
       life_span_max,
       life_span_min,
       image,
+      created,
       temperament: [...Temperaments]?.map((t) => t.name), // Crear una nueva propiedad "temperament" y asignarle los temperamentos unidos en una cadena
     };
   });
@@ -76,7 +79,7 @@ const createDog = async (
   temperament,
   life_span_min,
   life_span_max,
-  image
+  image,
 ) => {
 
   let dogs = await getAllDogs();
