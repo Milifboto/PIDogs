@@ -52,6 +52,10 @@ outline: none;
     -moz-osx-font-smoothing:grayscale;
 }
 
+.selectFilter:focus{
+    outline: none;
+    }
+
 .reset{
     background-color: #faf2e8;
     color: red;

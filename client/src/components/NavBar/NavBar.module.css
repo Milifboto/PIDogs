@@ -32,11 +32,15 @@
     font-size: 20px;
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
+    transition: all 400ms ease;
 }
 
 .links:hover{
     cursor: pointer;
     -moz-osx-font-smoothing:grayscale;
+    transform: scale(1.1);
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition-duration: .4s;
 }
 
 .links:focus {
