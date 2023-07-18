@@ -14,24 +14,26 @@ export const validation = (form) => {
   } else {
     errors.name = "";
   }
-
-  if (form.height_min > form.height_max) {
+  console.log(form.height_min);
+  console.log(form.height_max);
+  console.log(parseInt(form.height_min) > parseInt(form.height_max));
+  if (parseInt(form.height_min) > parseInt(form.height_max)) {
     errors.height_min =
-      "Dog's minimum height must be highter than it's maximum height";
+      "Dog's maximum height must be highter than it's minimum height";
   } else {
     errors.height_min = "";
   }
 
-  if (form.weight_min > form.weight_max) {
+  if (parseInt(form.weight_min) > parseInt(form.weight_max)) {
     errors.weight_min =
-      "Dog's minimum weight must be highter than it's maximum weight";
+      "Dog's maximum weight must be highter than it's minimum weight";
   } else {
     errors.weight_min = "";
   }
 
-  if (form.life_span_min > form.life_span_max) {
+  if (parseInt(form.life_span_min) > parseInt(form.life_span_max)) {
     errors.life_span_min =
-      "Dog's minimum life span must be highter than it's maximum life span";
+      "Dog's maximum life span must be highter than it's minimum life span";
   } else {
     errors.life_span_min = "";
   }

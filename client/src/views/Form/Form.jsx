@@ -127,7 +127,7 @@ const Form = () => {
         <div>
           <label className={style.label}>Minimum height</label>
           <input
-          className={style.input}
+            className={style.input}
             type="number"
             name="height_min"
             min="1"
@@ -208,9 +208,9 @@ const Form = () => {
         <div>
           <label className={style.label}>Temperaments</label>
           <select className={style.select} name="temperament" onChange={selectHandler}>
-            {allTemperaments?.map((temperament) => (
+            {allTemperaments?.map((temperament, index) => (
               <option
-                key={temperament.name}
+                key={`${temperament.id}-${index}`}
                 value={temperament.name}
                 id={temperament.id}
               >
