@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import style from "./Card.module.css";
 
-const Card = ({id, name, image, height, weight, life_span}) => {
+const Card = ({id, name, image, height_min, height_max, weight_min, weight_max, life_span_min, life_span_max,}) => {
   return (
     <div className={style.container}>
       <div className={style.imageContainer}>
@@ -15,11 +15,11 @@ const Card = ({id, name, image, height, weight, life_span}) => {
       <div className={style.atributes} >
       <h3 className={style.name}>{name}</h3>
         <p>
-          {`Heigh ${height}`}
+          { height_max ? `Heigh ${height_min} - ${height_max} cm` : `Heigh ${height_min} cm `}
           <br />
-          {`Weight ${weight}`}
+          { weight_max ? `Weight ${weight_min} - ${weight_max} kg` : `Weight ${weight_min} kg `}
           <br />
-          {`Life span ${life_span}`}
+          { life_span_max ? `Life span ${life_span_min} - ${life_span_max} years` : `Life span ${life_span_min} years `}
           <br/>
         </p>
           <Link to={`/detail/${id}`}><button className={style.detail}>Detail</button></Link>

@@ -10,6 +10,7 @@
 
 .textCointainer{
     display: flex;
+    flex-direction: column;
    justify-content: center;
    align-items: center;
    width: 100%;
@@ -56,4 +57,5 @@
     padding: 5px;
     margin: 5px;
     margin-left: 35px;
+    color: #faf2e8;
 }

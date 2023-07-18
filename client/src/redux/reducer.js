@@ -7,7 +7,7 @@ import {
   FILTER_ORIGIN,
   GET_DOGS_BY_NAME,
 } from "./action-types";
-import { filterOriginHelper } from "./helpers";
+// import { filterOriginHelper } from "./helpers";
 
 const inicialState = {
   dogs: [],
@@ -57,9 +57,17 @@ const rootReducer = (state = inicialState, action) => {
       };
 
     case FILTER_ORIGIN:
+      let filtered;
+      if (action.payload === "New breeds"){
+        filtered = state.dogs?.filter((dog) => dog.created === true);
+      }else if (action.payload === "Breeds API") {
+        filtered = state.dogs?.filter((dog) => dog.created === false);
+      } else {
+        filtered = state.dogs;
+      }
       return {
         ...state,
-        copyDogs: filterOriginHelper(state.dogs, action.payload),
+        copyDogs: filtered,
       };
 
     case RESET:

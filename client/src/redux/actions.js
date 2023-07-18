@@ -6,7 +6,7 @@ import {
   ORDER,
   FILTER_TEMPERAMENTS,
   RESET,
-  FILTER_ORIGIN
+  FILTER_ORIGIN,
 } from "./action-types";
 const URL = "http://localhost:3001";
 
@@ -24,8 +24,8 @@ export const getDogs = () => {
 
 export const getDogByName = (name) => {
   return async function (dispatch) {
-      const response = await axios.get(`${URL}/dogs?name=${name}`);
-       dispatch({ type: GET_DOGS_BY_NAME, payload: response.data });
+    const response = await axios.get(`${URL}/dogs?name=${name}`);
+    dispatch({ type: GET_DOGS_BY_NAME, payload: response.data });
   };
 };
 
@@ -45,28 +45,17 @@ export const getTemperaments = () => {
 };
 
 export function orderedAlphabeticallyAndByWeight(order) {
-  return {
-    type: ORDER,
-    payload: order,
-  };
+  return { type: ORDER, payload: order };
 }
 
 export function reset() {
-  return {
-    type: RESET,
-  };
+  return { type: RESET };
 }
 
 export const filterByTemperament = (value) => {
-  return {
-    type: FILTER_TEMPERAMENTS,
-    payload: value,
-  };
+  return { type: FILTER_TEMPERAMENTS, payload: value};
 };
 
 export const filterByOrigin = (value) => {
-  return async function (dispatch) {
-    dispatch({type: FILTER_ORIGIN, payload: value})
-  }
- 
-} 
+  return { type: FILTER_ORIGIN, payload: value };
+};

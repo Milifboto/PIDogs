@@ -28,13 +28,12 @@ const getAllDogs = async () => {
   });
 
   let dbData = await Dog.findAll({
-    include: {
+    include: { //especifico qué atributos del modelo Temperament quiero incluir en mi consulta
       model: Temperament,
       through: { attributes: [] },
       attributes: ["name"],
     },
   });
-
 
   dbData = dbData.map((dog) => {
     const {
@@ -61,7 +60,7 @@ const getAllDogs = async () => {
       life_span_min,
       image,
       created,
-      temperament: [...Temperaments]?.map((t) => t.name), // Crear una nueva propiedad "temperament" y asignarle los temperamentos unidos en una cadena
+      temperament: [...Temperaments]?.map((t) => t.name), // Creo una nueva propiedad "temperament" con los nombres de los temperamentos
     };
   });
 
@@ -101,10 +100,10 @@ const createDog = async (
   await newDog.addTemperaments(temperament);
   
   let dog = await Dog.findByPk(newDog.id);
-  let dogTemperaments = await dog.getTemperaments(); //me traigo todos los tempramentos de el perro encontrado por od
+  let dogTemperaments = await dog.getTemperaments(); //me traigo todos los tempramentos de el perro encontrado por id
   let temperamentsNames = dogTemperaments?.map((temperament) => temperament.name); //hago que me traiga los name
 
-  return { ...dog.toJSON(), temperament: temperamentsNames }; // traigo el dog parseado y los names de sus temperamentooos
+  return { ...dog.toJSON(), temperament: temperamentsNames }; // traigo el dog parseado y los nombres de sus temperamentos
 };
 
 

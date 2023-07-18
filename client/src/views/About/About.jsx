@@ -1,5 +1,5 @@
 import style from "./About.module.css";
-import aboutIMG from "../../assets/aboutIMG.jpg";
+import aboutIMG from "../../assets/aboutIMG.PNG";
 import githubIMG from "../../assets/github.png";
 import linkedinIMG from "../../assets/linkedin.png";
 import { Link } from "react-router-dom";
