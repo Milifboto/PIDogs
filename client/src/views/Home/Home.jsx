@@ -11,8 +11,8 @@ const Home = () => {
   const dispatch = useDispatch();
   
   const allDogs = useSelector((state) => state.copyDogs);
-  const [currentPage, setCurrentPage] = useState(1); //estado que almacena el número de página actual.
-  const [dogsPerPage] = useState(8); //almacena la cantidad de perros por página.
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dogsPerPage] = useState(8);
   const indexOfLastDog = currentPage * dogsPerPage; //calcula el índice del último perro en la página actual (pag 1, 9 perros)
   const indexOfFirstDog = indexOfLastDog - dogsPerPage; // calcula el índice del primer perro en la página actual (9 - 9)
   const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog); // muestra solo los perros de la página actual.
@@ -24,6 +24,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getDogs());
   }, [dispatch]);
+  
   return (
     <div className={style.container} >
       <SideBar setCurrentPage={setCurrentPage} />

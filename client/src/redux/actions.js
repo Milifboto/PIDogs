@@ -24,8 +24,12 @@ export const getDogs = () => {
 
 export const getDogByName = (name) => {
   return async function (dispatch) {
-    const response = await axios.get(`${URL}/dogs?name=${name}`);
-    dispatch({ type: GET_DOGS_BY_NAME, payload: response.data });
+    try {
+      const response = await axios.get(`${URL}/dogs?name=${name}`);
+      dispatch({ type: GET_DOGS_BY_NAME, payload: response.data });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 };
 
@@ -53,7 +57,7 @@ export function reset() {
 }
 
 export const filterByTemperament = (value) => {
-  return { type: FILTER_TEMPERAMENTS, payload: value};
+  return { type: FILTER_TEMPERAMENTS, payload: value };
 };
 
 export const filterByOrigin = (value) => {
