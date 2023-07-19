@@ -1,7 +1,7 @@
 import style from "./Pagination.module.css"
 
 const Pagination = ({dogsPerPage, allDogs, pagination, currentPage}) => {
-    const pageNumbers = [] // lo uso para almacenar los números de página.
+    const pageNumbers = [] // almacenar los números de página.
 
     //Math.ceil redondeo hacia arriba para que se generen suficientes números de página para mostrar todos los perros.
     for (let i = 1; i <= Math.ceil(allDogs/dogsPerPage); i++) {

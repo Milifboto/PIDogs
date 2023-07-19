@@ -13,11 +13,11 @@ const Home = () => {
   const allDogs = useSelector((state) => state.copyDogs);
   const [currentPage, setCurrentPage] = useState(1);
   const [dogsPerPage] = useState(8);
-  const indexOfLastDog = currentPage * dogsPerPage; //calcula el índice del último perro en la página actual (pag 1, 9 perros)
-  const indexOfFirstDog = indexOfLastDog - dogsPerPage; // calcula el índice del primer perro en la página actual (9 - 9)
-  const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog); // muestra solo los perros de la página actual.
-  // Toma dos parámetros: el índice inicial y el índice final de la porción que quiero obtener.
-  const pagination = (pageNumber) => { // función que recibe un número de página y actualiza el estado de currentPage con ese valor.
+  const indexOfLastDog = currentPage * dogsPerPage; 
+  const indexOfFirstDog = indexOfLastDog - dogsPerPage;
+  const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog); 
+
+  const pagination = (pageNumber) => { 
     setCurrentPage(pageNumber);
   };
  

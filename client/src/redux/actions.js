@@ -48,7 +48,7 @@ export const getTemperaments = () => {
   };
 };
 
-export function orderedAlphabeticallyAndByWeight(order) {
+export function orderedAlphabeticallyAndByWeight (order) {
   return { type: ORDER, payload: order };
 }
 

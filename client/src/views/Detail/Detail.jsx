@@ -8,16 +8,15 @@ const Detail = () => {
   const [dogDetail, setDogDetail] = useState({});
 
   useEffect(() => {
-    axios(`http://localhost:3001/dogs/${id}`).then(({ data }) => {
+    axios.get(`http://localhost:3001/dogs/${id}`).then(({ data }) => {
       if (data[0].name) {
         setDogDetail(data[0]);
       } else {
-        window.alert("No hay personajes con ese ID");
+        window.alert(`There are no dogs with the ID ${id}`);
       }
     });
     return setDogDetail({});
   }, [id]);
-  console.log(dogDetail);
 
   const {
     name,
@@ -37,20 +36,20 @@ const Detail = () => {
         <p className={style.atributeTitle}>Height</p>
         <p className={style.atribute}>
           {height_max
-            ? `Heigh ${height_min} - ${height_max} cm`
-            : `Heigh ${height_min} cm `}
+            ? `${height_min} - ${height_max} cm`
+            : `${height_min} cm `}
         </p>
         <p className={style.atributeTitle}>Weight</p>
         <p className={style.atribute}>
           {weight_max
-            ? `Weight ${weight_min} - ${weight_max} kg`
-            : `Weight ${weight_min} kg `}
+            ? ` ${weight_min} - ${weight_max} kg`
+            : ` ${weight_min} kg `}
         </p>
         <p className={style.atributeTitle}>Life Span </p>
         <p className={style.atribute}>
           {life_span_max
-            ? `Life span ${life_span_min} - ${life_span_max} years`
-            : `Life span ${life_span_min} years `}
+            ? ` ${life_span_min} - ${life_span_max} years`
+            : ` ${life_span_min} years `}
         </p>
         <p className={style.atributeTitle}>Temperaments</p>
         <p className={style.atributeTemp}>{temperament?.join(", ")} </p>

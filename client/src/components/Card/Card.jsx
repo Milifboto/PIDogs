@@ -17,6 +17,7 @@ const Card = ({id, name, image, height_min, height_max, weight_min, weight_max, 
         <p>
           { height_max ? `Heigh ${height_min} - ${height_max} cm` : `Heigh ${height_min} cm `}
           <br />
+          
           { weight_max ? `Weight ${weight_min} - ${weight_max} kg` : `Weight ${weight_min} kg `}
           <br />
           { life_span_max ? `Life span ${life_span_min} - ${life_span_max} years` : `Life span ${life_span_min} years `}

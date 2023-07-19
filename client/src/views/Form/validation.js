@@ -14,9 +14,6 @@ export const validation = (form) => {
   } else {
     errors.name = "";
   }
-  console.log(form.height_min);
-  console.log(form.height_max);
-  console.log(parseInt(form.height_min) > parseInt(form.height_max));
   if (parseInt(form.height_min) > parseInt(form.height_max)) {
     errors.height_min =
       "Dog's maximum height must be highter than it's minimum height";

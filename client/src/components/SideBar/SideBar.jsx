@@ -30,7 +30,6 @@ const SideBar = ({setCurrentPage}) => {
 
   function filterOriginHandler(event) {
     const value = event.target.value;
-    console.log(value)
     dispatch(filterByOrigin(value))
     setCurrentPage(1)
   }
@@ -92,7 +91,7 @@ const SideBar = ({setCurrentPage}) => {
         </select>
       </div >
             <div className={style.selectContainer}>
-              <button className={style.reset} onClick={handleReset}>Reset Filters</button>
+              <button className={style.reset} onClick={handleReset}>Reset</button>
             </div>
       
     </div>
