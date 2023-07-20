@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getDogByName, getDogs } from "../../redux/actions";
+import { getDogByName, getDogs, setCurrentPage } from "../../redux/actions";
 import style from "./SearchBar.module.css";
 
 export default function SearchBar() {
@@ -21,6 +21,7 @@ export default function SearchBar() {
     
      dispatch(getDogByName(search));
      setSearch("");
+     dispatch(setCurrentPage(1))
 
    };
 

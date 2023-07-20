@@ -6,13 +6,14 @@ import {
   FILTER_TEMPERAMENTS,
   FILTER_ORIGIN,
   GET_DOGS_BY_NAME,
+  CURRENT_PAGE
 } from "./action-types";
-// import { filterOriginHelper } from "./helpers";
 
 const inicialState = {
   dogs: [],
   temperaments: [],
   copyDogs: [], //los filtros los hago sobre copydogs asi puedo encadenar filtros sobre los mismos perris
+  currentPage: 1,
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -75,6 +76,12 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         copyDogs: state.dogs,
       };
+
+      case CURRENT_PAGE:
+        return {
+          ...state,
+          currentPage: action.payload,
+        }
 
     default:
       return { ...state };

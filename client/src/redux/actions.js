@@ -7,6 +7,7 @@ import {
   FILTER_TEMPERAMENTS,
   RESET,
   FILTER_ORIGIN,
+  CURRENT_PAGE
 } from "./action-types";
 const URL = "http://localhost:3001";
 
@@ -63,3 +64,7 @@ export const filterByTemperament = (value) => {
 export const filterByOrigin = (value) => {
   return { type: FILTER_ORIGIN, payload: value };
 };
+
+export const setCurrentPage = (page) => {
+  return { type: CURRENT_PAGE, payload: page}
+}

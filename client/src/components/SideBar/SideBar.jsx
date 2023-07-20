@@ -5,13 +5,15 @@ import {
   orderedAlphabeticallyAndByWeight,
   reset,
   filterByTemperament,
-  filterByOrigin
+  filterByOrigin,
+  setCurrentPage
 } from "../../redux/actions";
 import style from "./SideBar.module.css";
 
-const SideBar = ({setCurrentPage}) => {
+const SideBar = () => {
   const dispatch = useDispatch();
   const allTemps = useSelector((state) => state.temperaments);
+
 
   useEffect(() => {
     dispatch(getTemperaments());
@@ -20,23 +22,23 @@ const SideBar = ({setCurrentPage}) => {
  const temperamentFilterHandler = (event) => {
   const value = event.target.value;
   dispatch(filterByTemperament(value)); 
-  setCurrentPage(1)
+  dispatch(setCurrentPage(1));
 };
 
   function handleSortAlphabeticallyAndByWeight(event) {
     dispatch(orderedAlphabeticallyAndByWeight(event.target.value));
-    setCurrentPage(1);
+    dispatch(setCurrentPage(1));
   }
 
   function filterOriginHandler(event) {
     const value = event.target.value;
     dispatch(filterByOrigin(value))
-    setCurrentPage(1)
+    dispatch(setCurrentPage(1));
   }
 
   function handleReset() {
     dispatch(reset());
-    setCurrentPage(1);
+    dispatch(setCurrentPage(1));
   }
 
   return (

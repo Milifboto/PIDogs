@@ -5,5 +5,6 @@ export const ORDER ="ORDER";
 export const RESET ="RESET";
 export const FILTER_TEMPERAMENTS ="FILTER_TEMPERAMENTS";
 export const FILTER_ORIGIN ="FILTER_ORIGIN";
+export const CURRENT_PAGE ="CURRENT_PAGE";
 
 
