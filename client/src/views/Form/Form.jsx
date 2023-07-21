@@ -25,7 +25,6 @@ const Form = () => {
     life_span_min: "",
     temperament: [],
   });
-  console.log(form);
 
   const [errors, setErrors] = useState({
     name: "",
@@ -33,7 +32,7 @@ const Form = () => {
     height_min: "",
     weight_min: "",
     life_span_min: "",
-    temperaments: [],
+    temperaments: "",
   });
 
   const changeHandler = (event) => {
@@ -50,9 +49,9 @@ const Form = () => {
       errors.height_min ||
       errors.weight_min ||
       errors.life_span_min ||
-      errors.temperaments.length !== 0
+      errors.temperaments
     ) {
-      alert("You must complete all fields to create a dog");
+      alert("You must complete all fields correctly to create a dog");
     } else {
       const response = axios
         .post("http://localhost:3001/dogs", {

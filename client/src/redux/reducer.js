@@ -12,7 +12,7 @@ import {
 const inicialState = {
   dogs: [],
   temperaments: [],
-  copyDogs: [], //los filtros los hago sobre copydogs asi puedo encadenar filtros sobre los mismos perris
+  copyDogs: [], //los filtros los hago sobre copydogs asi puedo encadenar filtros sobre los mismos perros
   currentPage: 1,
 };
 
@@ -44,13 +44,9 @@ const rootReducer = (state = inicialState, action) => {
       } else if (action.payload === "Z-A") {
         ordered = state.copyDogs.sort((a, b) => b.name.localeCompare(a.name));
       } else if (action.payload === "lighter to heavier") {
-        ordered = state.copyDogs //filtro los valores null y desp ordeno
-          .filter((dog) => dog.weight_min !== null)
-          .sort((a, b) => a.weight_min - b.weight_min);
+        ordered = state.copyDogs.sort((a, b) => a.weight_min - b.weight_min);
       } else {
-        ordered = state.copyDogs
-          .filter((dog) => dog.weight_min !== null)
-          .sort((a, b) => b.weight_min - a.weight_min);
+        ordered = state.copyDogs.sort((a, b) => b.weight_min - a.weight_min);
       }
       return {
         ...state,

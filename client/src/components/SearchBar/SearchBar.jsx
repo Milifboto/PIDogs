@@ -19,7 +19,7 @@ export default function SearchBar() {
    const submitHandler = async (event) => {
     event.preventDefault();
     
-     await dispatch(getDogByName(search));
+    await dispatch(getDogByName(search));
      setSearch("");
      dispatch(setCurrentPage(1))
 
