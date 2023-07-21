@@ -234,13 +234,13 @@ const Form = () => {
         <div className={style.label}>
           {form.temperament &&
             form.temperament.map((temp) => (
-              <span
+              <button
                 key={temp.id}
                 onClick={() => deleteTemp(temp)}
-                className={style.spanTemp}
+                className={style.buttonTemp}
               >
                 {temp.name}
-              </span>
+              </button>
             ))}
         </div>
         <button type="submit" className={style.submit}>Submit</button>

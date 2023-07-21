@@ -149,6 +149,16 @@ outline: none;
 outline: none;
 }
 
-.spanTemp{
-    margin-right: 5px;
+.buttonTemp{
+    margin: 0px 5px 2px 0px;
+    background-color: #ffdab9 ;
+    color: red;
+    border-radius: 20px;
+    border-color: transparent;
+    font-size: 12px;
+}
+
+.buttonTemp:hover{
+    cursor: pointer;
+    -moz-osx-font-smoothing:grayscale;
 }

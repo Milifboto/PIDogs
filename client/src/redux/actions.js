@@ -18,7 +18,7 @@ export const getDogs = () => {
       const { data } = response;
       return dispatch({ type: GET_DOGS, payload: data });
     } catch (error) {
-      console.log(error.message);
+      window.alert(error.response.data.error);
     }
   };
 };
@@ -29,7 +29,7 @@ export const getDogByName = (name) => {
       const response = await axios.get(`${URL}/dogs?name=${name}`);
       dispatch({ type: GET_DOGS_BY_NAME, payload: response.data });
     } catch (error) {
-      console.log(error.message);
+      window.alert(error.response.data.error);
     }
   };
 };
@@ -44,7 +44,7 @@ export const getTemperaments = () => {
       }));
       return dispatch({ type: GET_TEMPERAMENTS, payload: temperaments });
     } catch (error) {
-      console.log(error.message);
+      window.alert(error.response.data.error);
     }
   };
 };
