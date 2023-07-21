@@ -12,6 +12,7 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.TEXT,
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
@@ -19,31 +20,37 @@ module.exports = (sequelize) => {
     },
     height_max: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      validate: {min: 1},
+      allowNull: false,
     },
     height_min: {
       type: DataTypes.INTEGER,
+      validate: {min: 1},
       allowNull: false,
     },
     weight_max: {
       type: DataTypes.INTEGER,
+      validate: {min: 1},
       allowNull: false
     },
     weight_min: {
       type: DataTypes.INTEGER,
+      validate: {min: 1},
       allowNull: false,
     },
     life_span_max: {
       type: DataTypes.INTEGER,
+      validate: {min: 1},
       allowNull: false
     },
     life_span_min:{
       type: DataTypes.INTEGER,
+      validate: {min: 1},
       allowNull: false,
     },
     created: {
       type: DataTypes.BOOLEAN,
-      // allowNull: false,
+      allowNull: false,
       defaultValue: true
     }
   },

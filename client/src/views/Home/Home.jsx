@@ -21,8 +21,8 @@ const Home = () => {
     dispatch(setCurrentPage(pageNumber));
   };
  
-  useEffect(() => {
-    dispatch(getDogs());
+  useEffect(() => { 
+    dispatch(getDogs())
   }, [dispatch]);
   
   return (

@@ -1,9 +1,10 @@
-const regex = /^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]*$/;
+const regexNumberSpecial = /^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]*$/;
+const regexURL =  /(https?:\/\/[\w.-]+(?:\/[\w\/_.-]*(?:\?\S+)?)?)\.(?:jpg|gif|png)/gi;
 
 export const validation = (form) => {
   const errors = {};
 
-  if (!(regex.test(form.name))) {
+  if (!(regexNumberSpecial.test(form.name))) {
     errors.name = `${form.name} is not valid, dog's breed names cannot contain numbers or special characters`;
   } else if (!form.name) {
     errors.name = "Breed name is required"
@@ -14,6 +15,15 @@ export const validation = (form) => {
   } else {
     errors.name = "";
   }
+
+  if(!form.image){
+    errors.image = "Image is required"
+  } else if (!(regexURL.test(form.image))){
+    errors.image = "The URL entered is not correct"
+  } else {
+    errors.image = "";
+  }
+
   if (parseInt(form.height_min) > parseInt(form.height_max)) {
     errors.height_min =
       "Dog's maximum height must be highter than it's minimum height";

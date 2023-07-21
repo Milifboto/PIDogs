@@ -28,7 +28,7 @@ const getAllDogs = async () => {
   });
 
   let dbData = await Dog.findAll({
-    include: { //especifico qué atributos del modelo Temperament quiero incluir en mi consulta
+    include: { //especifico qué atributos quiero incluir en mi consulta
       model: Temperament,
       through: { attributes: [] },
       attributes: ["name"],

@@ -25,7 +25,8 @@ const Form = () => {
     life_span_min: "",
     temperament: [],
   });
-  
+  console.log(form);
+
   const [errors, setErrors] = useState({
     name: "",
     image: "",
@@ -45,6 +46,7 @@ const Form = () => {
     event.preventDefault();
     if (
       errors.name ||
+      errors.image ||
       errors.height_min ||
       errors.weight_min ||
       errors.life_span_min ||
@@ -90,10 +92,15 @@ const Form = () => {
   };
 
   const deleteTemp = (temperament) => {
+      let newTemps =  form.temperament.filter((temp) => temp !== temperament)
     setForm({
       ...form,
-      temperament: form.temperament.filter((temp) => temp !== temperament),
+      temperament: newTemps
     });
+    setErrors(validation({
+      ...form,
+      temperament: newTemps
+    }))
   };
   return (
     <div className={style.container}>
@@ -204,6 +211,9 @@ const Form = () => {
             onChange={changeHandler}
             name="image"
           />
+          {errors.image && (
+            <span className={style.errors}>{errors.image}</span>
+          )}
         </div>
         <div>
           <label className={style.label}>Temperaments</label>

@@ -134,14 +134,16 @@ outline: none;
     margin-bottom: 6px;
     padding: 2px;
     height: 26px;
-    width: 60px;
+    width: 70px;
     font-family: 'Poppins', sans-serif;
 }
 
-.submit{
+.submit:hover{
+    background-color: #f7a84f;
     cursor: pointer;
     -moz-osx-font-smoothing:grayscale;
 }
+
 
 .submit:focus{
 outline: none;

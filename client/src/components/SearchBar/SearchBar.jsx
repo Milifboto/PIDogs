@@ -16,10 +16,10 @@ export default function SearchBar() {
      }
    };
  
-   const submitHandler = (event) => {
+   const submitHandler = async (event) => {
     event.preventDefault();
     
-     dispatch(getDogByName(search));
+     await dispatch(getDogByName(search));
      setSearch("");
      dispatch(setCurrentPage(1))
 
