@@ -1,35 +1,70 @@
-![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
+# Dog Breed Information SPA 🐶
 
-# **DOGS** | Proyecto Individual
+Welcome to the Dog Breed Information Single Page Application!
 
-## **📌 OBJETIVOS**
+## Overview
 
--  Construir una Single Page Application utlizando las tecnologías: **React**, **Redux**, **Node**, **Express** y **Sequelize**.
--  Poner en práctica recursos básicos de estilos y diseño (UX : UI).
--  Afirmar y conectar los conceptos aprendidos en la carrera.
--  Aprender mejores prácticas.
--  Aprender y practicar el workflow de GIT.
--  Utilizar y practicar testing.
+This project is a Single Page Application (SPA) designed to provide comprehensive information about various dog breeds. With an array of dynamic features, users can explore, filter, and sort through a wide range of dog breeds. From combined filters and ordering options to breed creation and search functionality, this application offers an immersive experience for dog enthusiasts and learners alike.
 
-<br />
+## Features
+
+- **Combined Filters and Ordering:** Users can seamlessly apply combined filters and select different sorting orders to tailor their browsing experience. Choose from A-Z, Z-A, lighter-heavier, and heavier-lighter sorting options.
+
+- **Breed Categories:** Discover breeds from three categories: "All Breeds," "New Breeds" (database additions), and "API Breeds" (fetched from an external API).
+
+- **Controlled Form for New Dogs:** Create new dog entries using a controlled form that validates every input. This ensures accurate and reliable data for each breed.
+
+- **Pagination:** Navigate through the extensive list of breeds with user-friendly pagination controls, making it easy to explore all breeds.
+
+- **Search by Breed Name:** Utilize the search bar to find specific breeds by name, enhancing user convenience and efficiency.
+
+## Technologies Used
+
+- HTML, CSS, JavaScript: The fundamental building blocks of the application's structure, style, and interactivity.
+
+- React.js: Developed using React.js for efficient component-based architecture and dynamic UI elements.
+
+- Vite: Employed Vite as the front-end build tool. To run the application, use `npm run dev` to start the development server.
+
+- Express: Utilized Express.js for server-side functionality. To start the server, use `npm start`.
+
+- API Integration: Utilized external API data to populate the application with a variety of dog breeds.
+
+- Pagination Logic: Implemented pagination logic to manage the display of multiple breed entries.
+
+## How to Run
+
+1. Clone this repository to your local machine.
+2. Navigate to the project directory in your terminal.
+3. Run `npm install` to install project dependencies.
+4. Run `npm run dev` to start the development server using Vite.
+5. In a separate terminal window, run `npm start` to start the Express server.
+6. Access the application by opening your web browser and visiting `http://localhost:3000`.
+
+## Demo
+
+![Dog Breed Information SPA Demo](/demo/demo.gif)
+
+## Future Enhancements
+
+As a continuously evolving project, future enhancements could encompass:
+
+- **User Accounts:** Implement user accounts to save favorites and personalize the browsing experience.
+
+- **Extended Breed Details:** Expand breed information to include care guides, health information, and more.
+
+- **Responsive Design:** Enhance the application's responsiveness across various devices and screen sizes.
+
+## Feedback and Contributions
+
+Feedback and contributions are enthusiastically welcomed. If you have suggestions, identify bugs, or want to introduce additional features, feel free to [open an issue](link-to-issue) or submit a pull request.
 
 ---
 
-## **⚠️ IMPORTANTE**
+Dive into the code and experience the diverse functionalities of the application. Should you have any inquiries or feedback, don't hesitate to reach out!
 
-Es necesario contar minimamente con la última versión estable de NodeJS y NPM. Asegúrate de contar con ella para poder instalar correctamente las dependecias necesarias para correr el proyecto. Actualmente las versiónes necesarias son:
+Happy exploring the canine world 🐕‍🦺!
 
--  **Node**: 12.18.3 o mayor
--  **NPM**: 6.14.16 o mayor
-
-Para verificar que versión tienes instalada:
-
-```bash
-node -v
-npm -v
-```
-
-**ACLARACIÓN:** las dependencias actuales se encuentran en las versiones que venimos trabajando durante el bootcamp.
 
 -  **react**: 17.0.1
 -  **react-dom**: 17.0.1
